@@ -1,0 +1,19 @@
+# Lazy-loaded Squarespace chunks the pages request at runtime (not visible in page HTML).
+# Found by loading each page in a browser and listing requests to assets.squarespace.com.
+https://assets.squarespace.com/universal/scripts-compressed/17597-5aa37b1f7cc7bbdb-min.en-US.js
+https://assets.squarespace.com/universal/scripts-compressed/21079-b90c422697302704-min.en-US.js
+https://assets.squarespace.com/universal/scripts-compressed/23227-07f8600f912abe00-min.en-US.js
+https://assets.squarespace.com/universal/scripts-compressed/31077-84966e820dd04b62-min.en-US.js
+https://assets.squarespace.com/universal/scripts-compressed/45779-1b560e815538deda-min.en-US.js
+https://assets.squarespace.com/universal/scripts-compressed/48844-665a31a44a2c7f1a-min.en-US.js
+https://assets.squarespace.com/universal/scripts-compressed/50785-5da795d97049b11f-min.en-US.js
+https://assets.squarespace.com/universal/scripts-compressed/54583-9325ef3cb2340712-min.en-US.js
+https://assets.squarespace.com/universal/scripts-compressed/68506-c65fcb65a030bc01-min.en-US.js
+https://assets.squarespace.com/universal/scripts-compressed/69494-6a5d78330d5bb48c-min.en-US.js
+https://assets.squarespace.com/universal/scripts-compressed/79393-399d279bc5efe96d-min.en-US.js
+https://assets.squarespace.com/universal/scripts-compressed/async-commerce-cart-utils-7b9762bcae5a347f-min.en-US.js
+https://assets.squarespace.com/universal/scripts-compressed/async-editor-render-form-3e36756bcaad79d9-min.en-US.js
+https://assets.squarespace.com/universal/scripts-compressed/async-render-donation-form-e09cb7af21dc8769-min.en-US.js
+https://assets.squarespace.com/universal/scripts-compressed/async-reserved-cart-bootstrap-d335617b5bcc8c2c-min.en-US.js
+https://assets.squarespace.com/universal/styles-compressed/35ebb88013744865-min.en-US.css
+https://assets.squarespace.com/universal/styles-compressed/8308d1793f387442-min.en-US.css

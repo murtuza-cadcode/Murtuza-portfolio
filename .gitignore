@@ -1,0 +1,8 @@
+# Local Squarespace mirror (regenerate with mirror.py) and old browser-saved pages
+src/
+* — SYED.html
+* — SYED_files/
+SYED.html
+SYED_files/
+.claude/
+.DS_Store
