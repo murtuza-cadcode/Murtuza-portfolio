@@ -1,21 +1,20 @@
-import type { Metadata } from "next";
 import { Block, Section } from "@/components/Section";
 import { Img, Video, Rule } from "@/components/blocks";
+import { dicts, type Locale } from "@/i18n";
 
-export const metadata: Metadata = { title: "Hobbies" };
-
-export default function HobbiesPage() {
+export function Hobbies({ locale }: { locale: Locale }) {
+  const t = dicts[locale].hobbies;
   return (
     <>
       <Section theme="white" first rows={{ m: 96, d: 27 }}>
         <Block m="2/2/6/10" d="3/3/6/13" z={9} jd="flex-start">
           <div className="text">
-            <p>I find a different kind of focus and precision in art, primarily through portrait sketching and acrylic painting. For me, creating art is an exercise in intense observation.</p>
+            <p>{t.art}</p>
           </div>
         </Block>
         <Block m="1/2/3/10" d="1/3/3/9" z={5} jm="flex-start">
           <div className="text">
-            <h3>Art & Sketching</h3>
+            <h3>{t.artTitle}</h3>
           </div>
         </Block>
         <Block m="6/2/18/10" d="5/3/18/9">
@@ -32,12 +31,12 @@ export default function HobbiesPage() {
         </Block>
         <Block m="41/2/43/10" d="1/14/3/22" z={6} jm="flex-start">
           <div className="text">
-            <h3>Football</h3>
+            <h3>{t.footballTitle}</h3>
           </div>
         </Block>
         <Block m="43/2/47/10" d="3/14/5/25" z={8} jm="flex-start" jd="flex-start">
           <div className="text">
-            <p>For several years, I had the privilege of playing for the Hyderabad Sporting Football Club. More than just a game, being part of a club taught me the true meaning of discipline, strategy, and collective effort.</p>
+            <p>{t.football}</p>
           </div>
         </Block>
         <Block m="47/2/61/10" d="5/14/16/19" z={7} jm="flex-start">
@@ -54,12 +53,12 @@ export default function HobbiesPage() {
         </Block>
         <Block m="90/2/92/10" d="17/20/19/23" z={7}>
           <div className="text">
-            <h3>Music</h3>
+            <h3>{t.musicTitle}</h3>
           </div>
         </Block>
         <Block m="92/2/97/10" d="19/20/24/25" z={11} jm="flex-start" jd="flex-start">
           <div className="text">
-            <p>{"  Recently, I've picked up the guitar, and I'm thoroughly enjoying the structured process of being a beginner again. Learning chords, developing muscle memory, and understanding the theory behind the music is a humbling and rewarding challenge"}</p>
+            <p>{t.music}</p>
           </div>
         </Block>
       </Section>
