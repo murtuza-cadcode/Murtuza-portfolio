@@ -3,19 +3,22 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { dicts, localePath, stripLocale, type Locale } from "@/i18n";
 import { url } from "./url";
 
 const NAV = [
-  { href: "/workexperience", label: "Work Experience" },
-  { href: "/extracurricular", label: "Extracurricular" },
-  { href: "/projects", label: "Projects" },
-  { href: "/hobbies", label: "Hobbies" },
-];
+  { href: "/workexperience", key: "work" },
+  { href: "/extracurricular", key: "extra" },
+  { href: "/projects", key: "projects" },
+  { href: "/hobbies", key: "hobbies" },
+] as const;
 const LINKEDIN = "https://www.linkedin.com/in/syed-murtuza-quadri/";
 const RESUME = url("/s/Syeds-Resume.pdf");
 
-export function Header() {
+export function Header({ locale }: { locale: Locale }) {
+  const t = dicts[locale].common;
   const pathname = usePathname();
+  const other: Locale = locale === "de" ? "en" : "de";
   const [open, setOpen] = useState(false);
 
   useEffect(() => setOpen(false), [pathname]);
@@ -23,36 +26,46 @@ export function Header() {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
 
-  const links = NAV.map(({ href, label }) => (
-    <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined}>
-      {label}
+  const links = NAV.map(({ href, key }) => {
+    const to = localePath(locale, href);
+    return (
+      <Link key={href} href={to} aria-current={pathname === to ? "page" : undefined}>
+        {t.nav[key]}
+      </Link>
+    );
+  });
+  const switcher = (
+    <Link className="lang" href={localePath(other, stripLocale(pathname))} hrefLang={other} lang={other} aria-label={`${t.language}: ${other.toUpperCase()}`}>
+      {other.toUpperCase()}
     </Link>
-  ));
+  );
 
   return (
     <header className={open ? "header open" : "header"}>
       <div className="header-inner">
-        <button className="burger" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen(!open)}>
+        <button className="burger" aria-label={open ? t.closeMenu : t.openMenu} aria-expanded={open} onClick={() => setOpen(!open)}>
           <span />
           <span />
         </button>
-        <Link href="/" className="site-title">
+        <Link href={localePath(locale, "/")} className="site-title">
           SYED
         </Link>
         <nav className="nav">{links}</nav>
         <div className="actions">
+          {switcher}
           <a className="social" href={LINKEDIN} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <LinkedInIcon />
           </a>
           <a className="btn primary resume" href={RESUME} target="_blank" rel="noopener noreferrer">
-            RESUME
+            {t.resume}
           </a>
         </div>
       </div>
       <nav className="menu" aria-hidden={!open}>
         {links}
+        {switcher}
         <a className="btn" href={RESUME} target="_blank" rel="noopener noreferrer">
-          RESUME
+          {t.resume}
         </a>
       </nav>
     </header>
