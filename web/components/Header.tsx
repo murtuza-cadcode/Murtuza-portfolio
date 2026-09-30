@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { dicts, localePath, stripLocale, type Locale } from "@/i18n";
-import { url } from "./url";
+import { dicts, localePath, type Locale } from "@/i18n";
+import { LocaleSwitcher } from "./LocaleSwitcher";
 
 const NAV = [
   { href: "/workexperience", key: "work" },
@@ -13,12 +13,11 @@ const NAV = [
   { href: "/hobbies", key: "hobbies" },
 ] as const;
 const LINKEDIN = "https://www.linkedin.com/in/syed-murtuza-quadri/";
-const RESUME = url("/s/Syeds-Resume.pdf");
+const RESUME = "https://drive.google.com/file/d/1uZ-SuKcYBw3EExx6OpNwvVB3XBQzYD67/view?usp=sharing";
 
 export function Header({ locale }: { locale: Locale }) {
   const t = dicts[locale].common;
   const pathname = usePathname();
-  const other: Locale = locale === "de" ? "en" : "de";
   const [open, setOpen] = useState(false);
 
   useEffect(() => setOpen(false), [pathname]);
@@ -34,11 +33,6 @@ export function Header({ locale }: { locale: Locale }) {
       </Link>
     );
   });
-  const switcher = (
-    <Link className="lang" href={localePath(other, stripLocale(pathname))} hrefLang={other} lang={other} aria-label={`${t.language}: ${other.toUpperCase()}`}>
-      {other.toUpperCase()}
-    </Link>
-  );
 
   return (
     <header className={open ? "header open" : "header"}>
@@ -52,7 +46,7 @@ export function Header({ locale }: { locale: Locale }) {
         </Link>
         <nav className="nav">{links}</nav>
         <div className="actions">
-          {switcher}
+          <LocaleSwitcher locale={locale} pathname={pathname} label={t.language} />
           <a className="social" href={LINKEDIN} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <LinkedInIcon />
           </a>
@@ -63,7 +57,7 @@ export function Header({ locale }: { locale: Locale }) {
       </div>
       <nav className="menu" aria-hidden={!open}>
         {links}
-        {switcher}
+        <LocaleSwitcher locale={locale} pathname={pathname} label={t.language} inline />
         <a className="btn" href={RESUME} target="_blank" rel="noopener noreferrer">
           {t.resume}
         </a>
